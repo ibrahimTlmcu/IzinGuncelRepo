@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8464a087d94543b5a85dbd40fb324d6b" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="DBIzinTakipModel.IzinTalebi" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIzinTakipModel.İzinTipi" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIzinTakipModel.Mesaj" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIzinTakipModel.OnaylananIzin" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIzinTakipModel.Personel" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIzinTakipModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="DBIzinTakipModel.FK_IzinTalebi_İzinTipi" ManuallyRouted="false" />
+        <AssociationConnector Association="DBIzinTakipModel.FK_IzinTalebi_Personel" ManuallyRouted="false" />
+        <AssociationConnector Association="DBIzinTakipModel.FK_OnaylananIzin_IzinTalebi" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,34 @@
+﻿@model IzinSistemi.Models.Entity.İzinTipi
+
+@{
+    ViewBag.Title = "IzinTipiGetir";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="card mt-5 shadow" style="max-width: 400px; margin: auto;">
+    <div class="card-header">
+        <h3 style="text-align:center">İzin Türü Güncelleme</h3>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Guncelle", "Home", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.LabelFor(k => k.Id, new { @class = "form-label" })
+                @Html.TextBoxFor(k => k.Id, new { @class = "form-control" })
+
+                @Html.LabelFor(k => k.Tip, new { @class = "form-label", style = "margin-top: 10px;" })
+                @Html.TextBoxFor(k => k.Tip, new { @class = "form-control" })
+
+                @Html.LabelFor(k => k.Saat, new { @class = "form-label", style = "margin-top: 10px;" })
+                @Html.TextBoxFor(k => k.Saat, new { @class = "form-control" })
+            </div>
+            <button class="btn btn-outline-warning mt-3">Güncelle</button>
+        }
+    </div>
+</div>
+<style>
+    body {
+        background: linear-gradient(to top, #e0b3ff, white);
+        
+    }
+</style>

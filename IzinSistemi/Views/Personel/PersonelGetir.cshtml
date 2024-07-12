@@ -1,0 +1,59 @@
+﻿@model IzinSistemi.Models.Entity.Personel
+@{
+    ViewBag.Title = "PersoneGetir";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="card mt-5 shadow" style="max-width: 800px; margin: auto;">
+    <div class="card-header">
+        <h3 style="text-align:center">Personel Güncelleme</h3>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Guncelle", "Personel", FormMethod.Post))
+        {
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            @Html.LabelFor(k => k.PId, new { @class = "form-label" })
+                            @Html.TextBoxFor(k => k.PId, new { @class = "form-control" })
+
+                            @Html.LabelFor(k => k.Isim, new { @class = "form-label", style = "margin-top: 10px;" })
+                            @Html.TextBoxFor(k => k.Isim, new { @class = "form-control" })
+
+                            @Html.LabelFor(k => k.Soyisim, new { @class = "form-label", style = "margin-top: 10px;" })
+                            @Html.TextBoxFor(k => k.Soyisim, new { @class = "form-control" })
+
+                            @Html.LabelFor(k => k.KullanıcıAdı, new { @class = "form-label", style = "margin-top: 10px;" })
+                            @Html.TextBoxFor(k => k.KullanıcıAdı, new { @class = "form-control" })
+
+                            @Html.LabelFor(k => k.Telefon, new { @class = "form-label", style = "margin-top: 10px;" })
+                            @Html.TextBoxFor(k => k.Telefon, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">  
+                            
+
+                            @Html.LabelFor(k => k.Mail, new { @class = "form-label", style = "margin-top: 10px;" })
+                            @Html.TextBoxFor(k => k.Mail, new { @class = "form-control" })
+
+                            @Html.LabelFor(k => k.KullanılanIzin, new { @class = "form-label", style = "margin-top: 10px;" })
+                            @Html.TextBoxFor(k => k.KullanılanIzin, new { @class = "form-control" })
+
+                            @Html.LabelFor(k => k.KalanIzin, new { @class = "form-label", style = "margin-top: 10px;" })
+                            @Html.TextBoxFor(k => k.KalanIzin, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-outline-warning mt-3">Güncelle</button>
+        }
+    </div>
+</div>
+
+<style>
+    body {
+        background: linear-gradient(to top, #e0b3ff, white);
+    }
+</style>

@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBIzinTakipModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="IzinTalebi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IzinTip" Type="int" />
+          <Property Name="IzinTalepPersoneId" Type="int" />
+          <Property Name="IzinOnayPersoneld" Type="int" />
+          <Property Name="Baslangic" Type="datetime" />
+          <Property Name="Bitis" Type="datetime" />
+          <Property Name="Detay" Type="nvarchar" MaxLength="150" />
+          <Property Name="Onay" Type="bit" />
+          <Property Name="Iptal" Type="bit" />
+        </EntityType>
+        <EntityType Name="İzinTipi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tip" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gun" Type="int" />
+          <Property Name="Saat" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="Mesaj">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GonderenId" Type="int" />
+          <Property Name="AlıcıId" Type="int" />
+          <Property Name="Konu" Type="nvarchar" MaxLength="50" />
+          <Property Name="Icerik" Type="nvarchar" MaxLength="510" />
+          <Property Name="Tarih" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OnaylananIzin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IzinTalepId" Type="int" />
+          <Property Name="Personeld" Type="int" />
+        </EntityType>
+        <EntityType Name="Personel">
+          <Key>
+            <PropertyRef Name="PId" />
+          </Key>
+          <Property Name="PId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Isim" Type="varchar" MaxLength="50" />
+          <Property Name="Soyisim" Type="varchar" MaxLength="50" />
+          <Property Name="KullanıcıAdı" Type="varchar" MaxLength="50" />
+          <Property Name="Telefon" Type="varchar" MaxLength="50" />
+          <Property Name="Mail" Type="varchar" MaxLength="50" />
+          <Property Name="ToplamIzin" Type="int" />
+          <Property Name="KullanılanIzin" Type="int" />
+          <Property Name="KalanIzin" Type="int" />
+          <Property Name="Fotograf" Type="nvarchar" MaxLength="1550" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_IzinTalebi_İzinTipi">
+          <End Role="İzinTipi" Type="Self.İzinTipi" Multiplicity="0..1" />
+          <End Role="IzinTalebi" Type="Self.IzinTalebi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="İzinTipi">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IzinTalebi">
+              <PropertyRef Name="IzinTip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IzinTalebi_Personel">
+          <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+          <End Role="IzinTalebi" Type="Self.IzinTalebi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel">
+              <PropertyRef Name="PId" />
+            </Principal>
+            <Dependent Role="IzinTalebi">
+              <PropertyRef Name="IzinTalepPersoneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OnaylananIzin_IzinTalebi">
+          <End Role="IzinTalebi" Type="Self.IzinTalebi" Multiplicity="1" />
+          <End Role="OnaylananIzin" Type="Self.OnaylananIzin" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="IzinTalebi">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OnaylananIzin">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBIzinTakipModelStoreContainer">
+          <EntitySet Name="IzinTalebi" EntityType="Self.IzinTalebi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="İzinTipi" EntityType="Self.İzinTipi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mesaj" EntityType="Self.Mesaj" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OnaylananIzin" EntityType="Self.OnaylananIzin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personel" EntityType="Self.Personel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_IzinTalebi_İzinTipi" Association="Self.FK_IzinTalebi_İzinTipi">
+            <End Role="İzinTipi" EntitySet="İzinTipi" />
+            <End Role="IzinTalebi" EntitySet="IzinTalebi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IzinTalebi_Personel" Association="Self.FK_IzinTalebi_Personel">
+            <End Role="Personel" EntitySet="Personel" />
+            <End Role="IzinTalebi" EntitySet="IzinTalebi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnaylananIzin_IzinTalebi" Association="Self.FK_OnaylananIzin_IzinTalebi">
+            <End Role="IzinTalebi" EntitySet="IzinTalebi" />
+            <End Role="OnaylananIzin" EntitySet="OnaylananIzin" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBIzinTakipModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="IzinTalebi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IzinTip" Type="Int32" />
+          <Property Name="IzinTalepPersoneId" Type="Int32" />
+          <Property Name="IzinOnayPersoneld" Type="Int32" />
+          <Property Name="Baslangic" Type="DateTime" Precision="3" />
+          <Property Name="Bitis" Type="DateTime" Precision="3" />
+          <Property Name="Detay" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Onay" Type="Boolean" />
+          <Property Name="Iptal" Type="Boolean" />
+          <NavigationProperty Name="İzinTipi" Relationship="Self.FK_IzinTalebi_İzinTipi" FromRole="IzinTalebi" ToRole="İzinTipi" />
+          <NavigationProperty Name="Personel" Relationship="Self.FK_IzinTalebi_Personel" FromRole="IzinTalebi" ToRole="Personel" />
+          <NavigationProperty Name="OnaylananIzin" Relationship="Self.FK_OnaylananIzin_IzinTalebi" FromRole="IzinTalebi" ToRole="OnaylananIzin" />
+        </EntityType>
+        <EntityType Name="İzinTipi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gun" Type="Int32" />
+          <Property Name="Saat" Type="Time" Precision="7" />
+          <NavigationProperty Name="IzinTalebi" Relationship="Self.FK_IzinTalebi_İzinTipi" FromRole="İzinTipi" ToRole="IzinTalebi" />
+        </EntityType>
+        <EntityType Name="Mesaj">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GonderenId" Type="Int32" />
+          <Property Name="AlıcıId" Type="Int32" />
+          <Property Name="Konu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Icerik" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+          <Property Name="Tarih" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="OnaylananIzin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IzinTalepId" Type="Int32" />
+          <Property Name="Personeld" Type="Int32" />
+          <NavigationProperty Name="IzinTalebi" Relationship="Self.FK_OnaylananIzin_IzinTalebi" FromRole="OnaylananIzin" ToRole="IzinTalebi" />
+        </EntityType>
+        <EntityType Name="Personel">
+          <Key>
+            <PropertyRef Name="PId" />
+          </Key>
+          <Property Name="PId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Isim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Soyisim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KullanıcıAdı" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ToplamIzin" Type="Int32" />
+          <Property Name="KullanılanIzin" Type="Int32" />
+          <Property Name="KalanIzin" Type="Int32" />
+          <Property Name="Fotograf" Type="String" MaxLength="1550" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="IzinTalebi" Relationship="Self.FK_IzinTalebi_Personel" FromRole="Personel" ToRole="IzinTalebi" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_IzinTalebi_İzinTipi">
+          <End Role="İzinTipi" Type="Self.İzinTipi" Multiplicity="0..1" />
+          <End Role="IzinTalebi" Type="Self.IzinTalebi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="İzinTipi">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IzinTalebi">
+              <PropertyRef Name="IzinTip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IzinTalebi_Personel">
+          <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+          <End Role="IzinTalebi" Type="Self.IzinTalebi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel">
+              <PropertyRef Name="PId" />
+            </Principal>
+            <Dependent Role="IzinTalebi">
+              <PropertyRef Name="IzinTalepPersoneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OnaylananIzin_IzinTalebi">
+          <End Role="IzinTalebi" Type="Self.IzinTalebi" Multiplicity="1" />
+          <End Role="OnaylananIzin" Type="Self.OnaylananIzin" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="IzinTalebi">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OnaylananIzin">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBIzinTakipEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="IzinTalebi" EntityType="Self.IzinTalebi" />
+          <EntitySet Name="İzinTipi" EntityType="Self.İzinTipi" />
+          <EntitySet Name="Mesaj" EntityType="Self.Mesaj" />
+          <EntitySet Name="OnaylananIzin" EntityType="Self.OnaylananIzin" />
+          <EntitySet Name="Personel" EntityType="Self.Personel" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_IzinTalebi_İzinTipi" Association="Self.FK_IzinTalebi_İzinTipi">
+            <End Role="İzinTipi" EntitySet="İzinTipi" />
+            <End Role="IzinTalebi" EntitySet="IzinTalebi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IzinTalebi_Personel" Association="Self.FK_IzinTalebi_Personel">
+            <End Role="Personel" EntitySet="Personel" />
+            <End Role="IzinTalebi" EntitySet="IzinTalebi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnaylananIzin_IzinTalebi" Association="Self.FK_OnaylananIzin_IzinTalebi">
+            <End Role="IzinTalebi" EntitySet="IzinTalebi" />
+            <End Role="OnaylananIzin" EntitySet="OnaylananIzin" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBIzinTakipModelStoreContainer" CdmEntityContainer="DBIzinTakipEntities">
+          <EntitySetMapping Name="IzinTalebi">
+            <EntityTypeMapping TypeName="DBIzinTakipModel.IzinTalebi">
+              <MappingFragment StoreEntitySet="IzinTalebi">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IzinTip" ColumnName="IzinTip" />
+                <ScalarProperty Name="IzinTalepPersoneId" ColumnName="IzinTalepPersoneId" />
+                <ScalarProperty Name="IzinOnayPersoneld" ColumnName="IzinOnayPersoneld" />
+                <ScalarProperty Name="Baslangic" ColumnName="Baslangic" />
+                <ScalarProperty Name="Bitis" ColumnName="Bitis" />
+                <ScalarProperty Name="Detay" ColumnName="Detay" />
+                <ScalarProperty Name="Onay" ColumnName="Onay" />
+                <ScalarProperty Name="Iptal" ColumnName="Iptal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="İzinTipi">
+            <EntityTypeMapping TypeName="DBIzinTakipModel.İzinTipi">
+              <MappingFragment StoreEntitySet="İzinTipi">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Tip" ColumnName="Tip" />
+                <ScalarProperty Name="Gun" ColumnName="Gun" />
+                <ScalarProperty Name="Saat" ColumnName="Saat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mesaj">
+            <EntityTypeMapping TypeName="DBIzinTakipModel.Mesaj">
+              <MappingFragment StoreEntitySet="Mesaj">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GonderenId" ColumnName="GonderenId" />
+                <ScalarProperty Name="AlıcıId" ColumnName="AlıcıId" />
+                <ScalarProperty Name="Konu" ColumnName="Konu" />
+                <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OnaylananIzin">
+            <EntityTypeMapping TypeName="DBIzinTakipModel.OnaylananIzin">
+              <MappingFragment StoreEntitySet="OnaylananIzin">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IzinTalepId" ColumnName="IzinTalepId" />
+                <ScalarProperty Name="Personeld" ColumnName="Personeld" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personel">
+            <EntityTypeMapping TypeName="DBIzinTakipModel.Personel">
+              <MappingFragment StoreEntitySet="Personel">
+                <ScalarProperty Name="PId" ColumnName="PId" />
+                <ScalarProperty Name="Isim" ColumnName="Isim" />
+                <ScalarProperty Name="Soyisim" ColumnName="Soyisim" />
+                <ScalarProperty Name="KullanıcıAdı" ColumnName="KullanıcıAdı" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="ToplamIzin" ColumnName="ToplamIzin" />
+                <ScalarProperty Name="KullanılanIzin" ColumnName="KullanılanIzin" />
+                <ScalarProperty Name="KalanIzin" ColumnName="KalanIzin" />
+                <ScalarProperty Name="Fotograf" ColumnName="Fotograf" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DBIzinTakipModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
