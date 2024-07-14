@@ -65,7 +65,7 @@
     <div class="position-relative">
         <div class="authentication-wrapper authentication-basic container-p-y">
             <div class="authentication-inner py-4">
-                <!-- Register Card -->
+                <!-- Card -->
                 <div class="card p-2">
                     <!-- Logo -->
                     <div class="app-brand justify-content-center mt-5">
@@ -129,25 +129,25 @@
 
                         <p class="mb-4">Gerekli alanları doldurunuz.</p>
 
-                        <form id="formAuthentication" class="mb-3" action="index.html">
+                        <form method="post" action="#" class="mb-3" >
                             <div class="form-floating form-floating-outline mb-3">
 
                                 @Html.TextBoxFor(k => k.Isim, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(k => k.Isim, "", new { @style = "color:red" })
-                                <label for="username">Kullanıcı Adı</label>
+                                <label name="Isim">Kullanıcı Adı</label>
                             </div>
                             <div class="form-floating form-floating-outline mb-3">
 
                                 @Html.TextBoxFor(k => k.Mail, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(k => k.Mail, "", new { @style = "color:red" })
-                                <label for="email">Email</label>
+                                <label name="Mail">Email</label>
                             </div>
                             <div class="mb-3 form-password-toggle">
                                 <div class="input-group input-group-merge">
                                     <div class="form-floating form-floating-outline">
 
-                                        @Html.TextBoxFor(k => k.Sif, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(k => k.Isim, "", new { @style = "color:red" })
+                                        @Html.TextBoxFor(k => k.Sifre, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(k => k.Sifre, "", new { @style = "color:red" })
                                         <label for="password">Şifre</label>
                                     </div>
                                     <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
@@ -162,14 +162,14 @@
                             </div>
                             <div class="form-floating form-floating-outline mb-3">
 
-                                @Html.TextBoxFor(k => k.Isim, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(k => k.Isim, "", new { @style = "color:red" })
+                                @Html.TextBoxFor(k => k.Soyisim, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(k => k.Soyisim, "", new { @style = "color:red" })
                                 <label for="email">Soyisim</label>
                             </div>
                             <div class="form-floating form-floating-outline mb-3">
 
-                                @Html.TextBoxFor(k => k.Isim, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(k => k.Isim, "", new { @style = "color:red" })
+                                @Html.TextBoxFor(k => k.Telefon, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(k => k.Telefon, "", new { @style = "color:red" })
                                 <label for="email">Telefon</label>
                             </div>
 

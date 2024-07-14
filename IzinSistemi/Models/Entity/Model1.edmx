@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DBIzinTakipModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DBIzinTakipModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="IzinTalebi">
           <Key>
             <PropertyRef Name="Id" />
@@ -61,6 +61,7 @@
           <Property Name="KullanılanIzin" Type="int" />
           <Property Name="KalanIzin" Type="int" />
           <Property Name="Fotograf" Type="nvarchar" MaxLength="1550" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -128,8 +129,7 @@
             <End Role="OnaylananIzin" EntitySet="OnaylananIzin" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBIzinTakipModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -146,9 +146,9 @@
           <Property Name="Detay" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Onay" Type="Boolean" />
           <Property Name="Iptal" Type="Boolean" />
-          <NavigationProperty Name="İzinTipi" Relationship="Self.FK_IzinTalebi_İzinTipi" FromRole="IzinTalebi" ToRole="İzinTipi" />
           <NavigationProperty Name="Personel" Relationship="Self.FK_IzinTalebi_Personel" FromRole="IzinTalebi" ToRole="Personel" />
           <NavigationProperty Name="OnaylananIzin" Relationship="Self.FK_OnaylananIzin_IzinTalebi" FromRole="IzinTalebi" ToRole="OnaylananIzin" />
+          <NavigationProperty Name="İzinTipi" Relationship="DBIzinTakipModel.FK_IzinTalebi_İzinTipi" FromRole="IzinTalebi" ToRole="İzinTipi" />
         </EntityType>
         <EntityType Name="İzinTipi">
           <Key>
@@ -158,7 +158,7 @@
           <Property Name="Tip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Gun" Type="Int32" />
           <Property Name="Saat" Type="Time" Precision="7" />
-          <NavigationProperty Name="IzinTalebi" Relationship="Self.FK_IzinTalebi_İzinTipi" FromRole="İzinTipi" ToRole="IzinTalebi" />
+          <NavigationProperty Name="IzinTalebi" Relationship="DBIzinTakipModel.FK_IzinTalebi_İzinTipi" FromRole="İzinTipi" ToRole="IzinTalebi" />
         </EntityType>
         <EntityType Name="Mesaj">
           <Key>
@@ -195,6 +195,7 @@
           <Property Name="KalanIzin" Type="Int32" />
           <Property Name="Fotograf" Type="String" MaxLength="1550" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="IzinTalebi" Relationship="Self.FK_IzinTalebi_Personel" FromRole="Personel" ToRole="IzinTalebi" />
+          <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -206,18 +207,6 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <Association Name="FK_IzinTalebi_İzinTipi">
-          <End Role="İzinTipi" Type="Self.İzinTipi" Multiplicity="0..1" />
-          <End Role="IzinTalebi" Type="Self.IzinTalebi" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="İzinTipi">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="IzinTalebi">
-              <PropertyRef Name="IzinTip" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_IzinTalebi_Personel">
           <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
           <End Role="IzinTalebi" Type="Self.IzinTalebi" Multiplicity="*" />
@@ -249,10 +238,6 @@
           <EntitySet Name="OnaylananIzin" EntityType="Self.OnaylananIzin" />
           <EntitySet Name="Personel" EntityType="Self.Personel" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <AssociationSet Name="FK_IzinTalebi_İzinTipi" Association="Self.FK_IzinTalebi_İzinTipi">
-            <End Role="İzinTipi" EntitySet="İzinTipi" />
-            <End Role="IzinTalebi" EntitySet="IzinTalebi" />
-          </AssociationSet>
           <AssociationSet Name="FK_IzinTalebi_Personel" Association="Self.FK_IzinTalebi_Personel">
             <End Role="Personel" EntitySet="Personel" />
             <End Role="IzinTalebi" EntitySet="IzinTalebi" />
@@ -261,7 +246,23 @@
             <End Role="IzinTalebi" EntitySet="IzinTalebi" />
             <End Role="OnaylananIzin" EntitySet="OnaylananIzin" />
           </AssociationSet>
+          <AssociationSet Name="FK_IzinTalebi_İzinTipi" Association="DBIzinTakipModel.FK_IzinTalebi_İzinTipi">
+            <End Role="İzinTipi" EntitySet="İzinTipi" />
+            <End Role="IzinTalebi" EntitySet="IzinTalebi" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_IzinTalebi_İzinTipi">
+          <End Type="DBIzinTakipModel.İzinTipi" Role="İzinTipi" Multiplicity="0..1" />
+          <End Type="DBIzinTakipModel.IzinTalebi" Role="IzinTalebi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="İzinTipi">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IzinTalebi">
+              <PropertyRef Name="IzinTip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -317,6 +318,7 @@
           <EntitySetMapping Name="Personel">
             <EntityTypeMapping TypeName="DBIzinTakipModel.Personel">
               <MappingFragment StoreEntitySet="Personel">
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
                 <ScalarProperty Name="PId" ColumnName="PId" />
                 <ScalarProperty Name="Isim" ColumnName="Isim" />
                 <ScalarProperty Name="Soyisim" ColumnName="Soyisim" />

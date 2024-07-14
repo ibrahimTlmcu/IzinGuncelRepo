@@ -11,8 +11,7 @@ namespace IzinSistemi.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class İzinTipi
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,14 +21,8 @@ namespace IzinSistemi.Models.Entity
         }
     
         public int Id { get; set; }
-
-        [Required(ErrorMessage ="İzin Türü Alanı Boş geçilemez")]
         public string Tip { get; set; }
-
-        [Required(ErrorMessage = "Gün Alanı Boş geçilemez")]
         public Nullable<int> Gun { get; set; }
-
-        [Required(ErrorMessage = "Saat Alanı Boş geçilemez")]
         public Nullable<System.TimeSpan> Saat { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

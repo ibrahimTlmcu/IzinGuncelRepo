@@ -95,7 +95,13 @@
                             @Html.TextBoxFor(k => k.KalanIzin, new { @class = "form-control" })
                             @Html.ValidationMessageFor(k => k.KalanIzin, "", new { @style = "color:red" })
                         </div>
-                        
+                        <div class="mb-3">
+                            <label for="KalanIzin" class="form-label">Sifre</label>
+
+                            @Html.TextBoxFor(k => k.Sifre, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(k => k.Sifre, "", new { @style = "color:red" })
+                        </div>
+
                     </div>
                 </div>
 

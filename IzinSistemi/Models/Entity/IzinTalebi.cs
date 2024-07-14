@@ -24,8 +24,8 @@ namespace IzinSistemi.Models.Entity
         public Nullable<bool> Onay { get; set; }
         public Nullable<bool> Iptal { get; set; }
     
-        public virtual İzinTipi İzinTipi { get; set; }
         public virtual Personel Personel { get; set; }
         public virtual OnaylananIzin OnaylananIzin { get; set; }
+        public virtual İzinTipi İzinTipi { get; set; }
     }
 }

@@ -11,8 +11,7 @@ namespace IzinSistemi.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Personel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,26 +21,17 @@ namespace IzinSistemi.Models.Entity
         }
     
         public int PId { get; set; }
-        [Required(ErrorMessage ="Personel Adı Boş Geçilemez ! ")]
         public string Isim { get; set; }
-        [Required(ErrorMessage = "Soyisim Boş Geçilemez ! ")]
         public string Soyisim { get; set; }
-        [Required(ErrorMessage = "Kullanıcı Adı  Boş Geçilemez ! ")]
         public string KullanıcıAdı { get; set; }
-        [Required(ErrorMessage = "Telefon  Boş Geçilemez ! ")]
         public string Telefon { get; set; }
-        [Required(ErrorMessage = "Mail  Boş Geçilemez ! ")]
         public string Mail { get; set; }
-        [Required(ErrorMessage = "Toplam Izin Boş Geçilemez ! ")]
         public Nullable<int> ToplamIzin { get; set; }
-        [Required(ErrorMessage = "Kullanılan İzin Boş Geçilemez ! ")]
         public Nullable<int> KullanılanIzin { get; set; }
-        [Required(ErrorMessage = "Kalan İzin Boş Geçilemez ! ")]
         public Nullable<int> KalanIzin { get; set; }
-        [Required(ErrorMessage = "Personel Adı Boş Geçilemez ! ")]
         public string Fotograf { get; set; }
-        [Required(ErrorMessage = "Personel Adı Boş Geçilemez ! ")]
-
+        public string Sifre { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<IzinTalebi> IzinTalebi { get; set; }
     }

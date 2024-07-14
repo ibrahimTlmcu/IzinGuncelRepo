@@ -18,8 +18,16 @@ namespace IzinSistemi.Controllers
         {
             return View();
         }
+
         [HttpGet]
-        public ActionResult KayıtOl(Personel p)
+        public  ActionResult KayitOl()
+        {
+            return View  ();
+        }
+
+        [HttpPost]
+
+        public ActionResult KayitOl(Personel p)
         {
             if (!ModelState.IsValid)
             {
