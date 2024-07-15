@@ -525,9 +525,11 @@
     <Content Include="Views\Personel\Index.cshtml" />
     <Content Include="Views\Personel\PersonelEkle.cshtml" />
     <Content Include="Views\Personel\PersonelGetir.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Register\KayitOl.cshtml" />
+    <Content Include="Views\Shared\LayoutPanel.cshtml" />
     <Content Include="Views\Panel\Index.cshtml" />
+    <Content Include="Views\Personel\tut.cshtml" />
+    <Content Include="Views\Login\GirisYap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

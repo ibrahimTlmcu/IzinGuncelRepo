@@ -11,12 +11,13 @@ namespace IzinSistemi.Controllers
     public class LoginController : Controller
     {
         // GET: Login
-        DBIzinTakipEntities db = new DBIzinTakipEntities();
 
-        public ActionResult Index()
+
+        DBIzinTakipEntities db = new DBIzinTakipEntities();
+        public ActionResult GirisYap()
         {
             return View();
-        }   
+        }
 
         [HttpPost]
 
@@ -26,15 +27,17 @@ namespace IzinSistemi.Controllers
             if (bilgiler != null)
             {
                 FormsAuthentication.SetAuthCookie(bilgiler.Mail, false);
-                return RedirectToAction("Index","Home");
+                Session["Isim"] = bilgiler.Isim.ToString();
+                Session["Soyisim"]=bilgiler.Soyisim.ToString();
+                Session["KullanıcıAdı"]=bilgiler.KullanıcıAdı.ToString();
+                Session["Telefon"] = bilgiler.Telefon.ToString();
+                Session["Sifre"] = bilgiler.Sifre.ToString();
+                return RedirectToAction("Index","Panel");
             }
             else
             {
-                return View();
+                return View(); 
             }
-
         }
-
-       
     }
 }

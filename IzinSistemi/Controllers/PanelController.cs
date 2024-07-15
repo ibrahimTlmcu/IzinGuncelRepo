@@ -10,6 +10,7 @@ namespace IzinSistemi.Controllers
     {
         // GET: Panel
 
+        [Authorize]
         public ActionResult Index()
         {
             return View();
