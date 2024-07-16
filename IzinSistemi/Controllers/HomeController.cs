@@ -20,7 +20,8 @@ namespace IzinSistemi.Controllers
 
         public ActionResult TipEkle()
         {
-            return View();
+            var item = db.İzinTipi.ToList();
+            return View(item);
         }
 
 

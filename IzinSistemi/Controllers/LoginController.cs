@@ -24,14 +24,22 @@ namespace IzinSistemi.Controllers
         public ActionResult GirisYap(Personel p)
         {
             var bilgiler = db.Personel.FirstOrDefault(x => x.Mail == p.Mail && x.Sifre == p.Sifre);
+        
+            // Sadece mail session getir.
+            //Diğer veriler TempData yada ViewBag
             if (bilgiler != null)
             {
+
                 FormsAuthentication.SetAuthCookie(bilgiler.Mail, false);
-                Session["Isim"] = bilgiler.Isim.ToString();
-                Session["Soyisim"]=bilgiler.Soyisim.ToString();
-                Session["KullanıcıAdı"]=bilgiler.KullanıcıAdı.ToString();
-                Session["Telefon"] = bilgiler.Telefon.ToString();
-                Session["Sifre"] = bilgiler.Sifre.ToString();
+                Session["Mail"] = bilgiler.Mail.ToString();
+                TempData["Isim"] = bilgiler.Isim.ToString();
+                TempData["Soyisim"]=bilgiler.Soyisim.ToString();
+                TempData["KullanıcıAdı"]=bilgiler.KullanıcıAdı.ToString();
+                TempData["Telefon"] = bilgiler.Telefon.ToString();
+                TempData["Sifre"] = bilgiler.Sifre.ToString();
+                TempData["KalanIzin"] = bilgiler.KalanIzin.ToString();
+                TempData["KullanılanIzin"] = bilgiler.KullanılanIzin.ToString();
+                TempData["ToplamIzin"] = bilgiler.ToplamIzin.ToString();
                 return RedirectToAction("Index","Panel");
             }
             else
@@ -39,5 +47,6 @@ namespace IzinSistemi.Controllers
                 return View(); 
             }
         }
+     
     }
 }

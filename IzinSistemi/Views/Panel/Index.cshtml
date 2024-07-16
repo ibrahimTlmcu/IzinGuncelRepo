@@ -1,4 +1,4 @@
-﻿
+﻿@model IzinSistemi.Models.Entity.Personel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Layout.cshtml";
@@ -7,21 +7,368 @@
 <h2>Profil</h2>
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
 
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+<div class="grey-bg container-fluid">
+    @*<section id="minimal-statistics">
+            <div class="row">
+                <div class="col-12 mt-3 mb-1">
+                    <h4 class="text-uppercase">Minimal Statistics Cards</h4>
+                    <p>Statistics on minimal cards.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="align-self-center">
+                                        <i class="icon-pencil primary font-large-2 float-left"></i>
+                                    </div>
+                                    <div class="media-body text-right">
+                                        <h3>278</h3>
+                                        <span>New Posts</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="align-self-center">
+                                        <i class="icon-speech warning font-large-2 float-left"></i>
+                                    </div>
+                                    <div class="media-body text-right">
+                                        <h3>156</h3>
+                                        <span>New Comments</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="align-self-center">
+                                        <i class="icon-graph success font-large-2 float-left"></i>
+                                    </div>
+                                    <div class="media-body text-right">
+                                        <h3>64.89 %</h3>
+                                        <span>Bounce Rate</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="align-self-center">
+                                        <i class="icon-pointer danger font-large-2 float-left"></i>
+                                    </div>
+                                    <div class="media-body text-right">
+                                        <h3>423</h3>
+                                        <span>Total Visits</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h3 class="danger">278</h3>
+                                        <span>New Projects</span>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <i class="icon-rocket danger font-large-2 float-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h3 class="success">156</h3>
+                                        <span>New Clients</span>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <i class="icon-user success font-large-2 float-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h3 class="warning">64.89 %</h3>
+                                        <span>Conversion Rate</span>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <i class="icon-pie-chart warning font-large-2 float-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h3 class="primary">423</h3>
+                                        <span>Support Tickets</span>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <i class="icon-support primary font-large-2 float-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h3 class="primary">278</h3>
+                                        <span>New Posts</span>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <i class="icon-book-open primary font-large-2 float-right"></i>
+                                    </div>
+                                </div>
+                                <div class="progress mt-1 mb-0" style="height: 7px;">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h3 class="warning">156</h3>
+                                        <span>New Comments</span>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <i class="icon-bubbles warning font-large-2 float-right"></i>
+                                    </div>
+                                </div>
+                                <div class="progress mt-1 mb-0" style="height: 7px;">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h3 class="success">64.89 %</h3>
+                                        <span>Bounce Rate</span>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <i class="icon-cup success font-large-2 float-right"></i>
+                                    </div>
+                                </div>
+                                <div class="progress mt-1 mb-0" style="height: 7px;">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h3 class="danger">423</h3>
+                                        <span>Total Visits</span>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <i class="icon-direction danger font-large-2 float-right"></i>
+                                    </div>
+                                </div>
+                                <div class="progress mt-1 mb-0" style="height: 7px;">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>*@
+
+    <section id="stats-subtitle">
+        <div class="row">
+
+        </div>
+
+        <div class="row">
+            <div class="col-xl-6 col-md-12">
+                <div class="card overflow-hidden">
+                    <div class="card-content">
+                        <div class="card-body cleartfix">
+                            <div class="media align-items-stretch">
+                                <div class="align-self-center">
+                                    <i class="icon-pencil primary font-large-2 mr-2"></i>
+                                </div>
+                                <div class="media-body">
+                                    <h4>Kalan Izin  @TempData["KalanIzin"].ToString()</h4>
+                                    <span></span>
+                                </div>
+                                <div class="align-self-center">
+                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-md-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body cleartfix">
+                            <div class="media align-items-stretch">
+                                <div class="align-self-center">
+                                    <i class="icon-speech warning font-large-2 mr-2"></i>
+                                </div>
+                                <div class="media-body">
+                                    <h4>Kullanılan Izin</h4>
+                                    <span></span>
+                                </div>
+                                <div class="align-self-center">
+                                    <h1>1</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-6 col-md-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body cleartfix">
+                            <div class="media align-items-stretch">
+                                <div class="align-self-center">
+                                    <h1 class="mr-2">Bekleyen İzin Talebi</h1>
+                                </div>
+                                <div class="media-body">
+                                    <h4></h4>
+                                    <span></span>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="icon-heart danger font-large-2"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-md-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body cleartfix">
+                            <div class="media align-items-stretch">
+                                <div  class="align-self-center">
+                                    <a href="IzinTalebi/Talep/"> <h2>İzin Talebi </h2></a> 
+                                </div>
+                                <div class="media-body">
+                                    
+                                    
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="icon-wallet success font-large-2"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="container">
+    <div class="row ">
+
+
+
+    </div>
+</div>
 
 
 <!-- Basic Layout & Basic with Icons -->
 <div class="row">
-    
+
     <!-- Basic with Icons -->
     <div class="col-xxl">
         <div class="card mb-4">
             <div class="card-header d-flex align-items-center justify-content-between">
-                <h5 class="mb-0">Basic with Icons</h5>
-                <small class="text-muted float-end">Merged input group</small>
+                <h5 class="mb-0"></h5>
+                <small class="text-muted float-end"></small>
             </div>
             <div class="card-body">
-                <form>
+                @using (Html.BeginForm("Index2", "Panel", FormMethod.Post))
+                {
+
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Name</label>
                         <div class="col-sm-10">
@@ -29,31 +376,36 @@
                                 <span id="basic-icon-default-fullname2" class="input-group-text">
                                     <i class="mdi mdi-account-outline"></i>
                                 </span>
-                                <input type="text"
-                                       class="form-control"
-                                       id="basic-icon-default-fullname"
-                                       placeholder=" @Session["Isim"].ToString()"
-                                       aria-label="John Doe"
-                                       aria-describedby="basic-icon-default-fullname2" />
+
+
+
+                                @Html.TextBoxFor(k => k.Isim, new { @class = "form-control" })
                             </div>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Company</label>
+                        <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Soyisim</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                                 <span id="basic-icon-default-company2" class="input-group-text">
                                     <i class="mdi mdi-office-building-outline"></i>
                                 </span>
-                                <input type="text"
-                                       id="basic-icon-default-company"
-                                       class="form-control"
-                                       placeholder="@Session["Soyisim"].ToString()"
-                                       aria-label="ACME Inc."
-                                       aria-describedby="basic-icon-default-company2" />
+                                @Html.TextBoxFor(k => k.Soyisim, new { @class = "form-control" })
                             </div>
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Kullanıcı Adı</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-company2" class="input-group-text">
+                                    <i class="mdi mdi-pencil-off-outline"></i>
+                                </span>
+                                @Html.TextBoxFor(k => k.KullanıcıAdı, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Email</label>
                         <div class="col-sm-10">
@@ -74,41 +426,34 @@
                         <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Sifre</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
+
                                 <span class="input-group-text"><i class="mdi mdi-email-outline"></i></span>
-                                <input type="text"
-                                       id="basic-icon-default-email"
-                                       class="form-control"
-                                       placeholder="@Session["Sifre"].ToString()"
-                                       aria-label="john.doe"
-                                       aria-describedby="basic-icon-default-email2" />
+                                @Html.TextBoxFor(k => k.Sifre, new { @class = "form-control" })
                                 @*<span id="basic-icon-default-email2" class="input-group-text">@example.com</span>*@
                             </div>
                             <div class="form-text">You can use letters, numbers & periods</div>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label class="col-sm-2 form-label" for="basic-icon-default-phone">Phone No</label>
+                        <label class="col-sm-2 form-label" for="basic-icon-default-phone">Telefon No</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                                 <span id="basic-icon-default-phone2" class="input-group-text">
                                     <i class="mdi mdi-phone"></i>
                                 </span>
-                                <input type="text"
-                                       id="basic-icon-default-phone"
-                                       class="form-control phone-mask"
-                                       placeholder="@Session["Telefon"].ToString();"
-                                       aria-label="658 799 8941"
-                                       aria-describedby="basic-icon-default-phone2" />
+                                @Html.TextBoxFor(k => k.Telefon, new { @class = "form-control" })
                             </div>
                         </div>
                     </div>
-                 
+
                     <div class="row justify-content-end">
                         <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">Send</button>
+                            <button type="submit" class="btn btn-primary">Şifre Güncelle</button>
                         </div>
                     </div>
-                </form>
+
+                }
+
             </div>
         </div>
     </div>

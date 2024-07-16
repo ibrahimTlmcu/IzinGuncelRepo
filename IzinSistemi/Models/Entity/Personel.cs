@@ -11,7 +11,8 @@ namespace IzinSistemi.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Personel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,10 +22,15 @@ namespace IzinSistemi.Models.Entity
         }
     
         public int PId { get; set; }
+        [Required(ErrorMessage ="Isim alanı boş olamaz")]
         public string Isim { get; set; }
+        [Required(ErrorMessage = "Soyisim alanı boş olamaz")]
         public string Soyisim { get; set; }
+        [Required(ErrorMessage = "Kullanıcı Adı  boş olamaz")]
         public string KullanıcıAdı { get; set; }
+        [Required(ErrorMessage = "Teşefon alanı boş olamaz")]
         public string Telefon { get; set; }
+        [Required(ErrorMessage = "Mail alanı boş olamaz")]
         public string Mail { get; set; }
         public Nullable<int> ToplamIzin { get; set; }
         public Nullable<int> KullanılanIzin { get; set; }

@@ -1,44 +1,40 @@
 ﻿using IzinSistemi.Models.Entity;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace IzinSistemi.Controllers
 {
-    public class RegisterController : Controller
+    public class IzinTalebiController : Controller
     {
-        // GET: Register
-
+        // GET: IzinTalebi
 
         DBIzinTakipEntities db = new DBIzinTakipEntities();
         public ActionResult Index()
         {
+           
             return View();
         }
 
         [HttpGet]
-        public  ActionResult KayitOl()
+        public ActionResult Talep()
         {
-            return View  ();
+            return View();
         }
 
         [HttpPost]
-
-        public ActionResult KayitOl(Personel p)
+        public ActionResult Talep(IzinTalebi p)
         {
-            if (!ModelState.IsValid)
-            {
-                return View("KayitOl");
-            }
-            db.Personel.Add(p);
+            
+            db.IzinTalebi.Add(p);
             db.SaveChanges();
-            return View();
-
+            return RedirectToAction("Index");
         }
 
-
     }
+
+
+
 }
