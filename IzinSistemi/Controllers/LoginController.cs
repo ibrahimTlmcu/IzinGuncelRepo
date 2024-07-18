@@ -37,9 +37,10 @@ namespace IzinSistemi.Controllers
                 TempData["KullanıcıAdı"]=bilgiler.KullanıcıAdı.ToString();
                 TempData["Telefon"] = bilgiler.Telefon.ToString();
                 TempData["Sifre"] = bilgiler.Sifre.ToString();
-                TempData["KalanIzin"] = bilgiler.KalanIzin.ToString();
-                TempData["KullanılanIzin"] = bilgiler.KullanılanIzin.ToString();
+                Session["KalanIzin"] = bilgiler.KalanIzin.ToString();
+                Session["KullanılanIzin"] = bilgiler.KullanılanIzin.ToString();
                 TempData["ToplamIzin"] = bilgiler.ToplamIzin.ToString();
+                TempData["PId"] = bilgiler.PId.ToString();
                 return RedirectToAction("Index","Panel");
             }
             else

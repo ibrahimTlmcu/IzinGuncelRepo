@@ -1,139 +1,94 @@
 ﻿@model IzinSistemi.Models.Entity.IzinTalebi
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-<style>
-    body {
-        background: linear-gradient(to top, #e0b3ff, white);
-        font-family: Arial, sans-serif;
-    }
-
-    .form-control {
-        padding: 0.375rem 0.75rem;
-        font-size: 0.875rem;
-        border-radius: 0.25rem;
-    }
-
-    .btn {
-        padding: 0.375rem 0.75rem;
-        font-size: 0.875rem;
-        border-radius: 0.25rem;
-    }
-
-    .card {
-        max-width: 800px;
-        margin: 20px auto;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 0.25rem;
-    }
-
-    .card-body {
-        padding: 1rem;
-    }
-
-    .card-title {
-        font-size: 1.25rem;
-        text-align: center;
-        margin-bottom: 1rem;
-    }
-
-    .date-picker-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 10px;
-    }
-
-    .date-picker-content {
-        flex: 1;
-    }
-</style>
 
 <div class="container">
     <div class="card shadow p-3 mb-5 bg-body rounded">
         <div class="card-body">
             <h2 class="card-title">Personel ve İzin Bilgileri Girişi</h2>
 
-            <form class="form-group" method="post">
+            @using (Html.BeginForm("Talep", "IzinTalebi", FormMethod.Post))
+            {
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="Isim" class="form-label">Izin Adı</label>
-                            @Html.TextBoxFor(k => k.İzinTipi, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(k => k.İzinTipi, "", new { @style = "color:red" })
+                            <label for="IzinTipId" class="form-label">Izin Adı</label>
+                            @Html.DropDownListFor(k => k.IzinTip, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
                         </div>
                         <div class="mb-3">
-                            <label for="Soyisim" class="form-label">Detay</label>
+                            <label for="Detay" class="form-label">Detay</label>
                             @Html.TextBoxFor(k => k.Detay, new { @class = "form-control" })
                             @Html.ValidationMessageFor(k => k.Detay, "", new { @style = "color:red" })
                         </div>
-
-                        <div class="date-picker-container">
-                            <div class="date-picker-content">
-                                <input type="text" id="start-date" class="form-control" placeholder="Başlangıç Tarihi seçiniz...">
-                            </div>
-                            <div class="date-picker-content">
-                                <input type="text" id="end-date" class="form-control" placeholder="Bitiş Tarihi seçiniz...">
-                            </div>
-                        </div>
-                        <div class="mt-3">
-                            <input type="text" id="date-range" class="form-control" readonly placeholder="Tarih aralığı">
-                            <input type="text" id="day-difference" class="form-control mt-2" readonly placeholder="Gün farkı">
-                        </div>
-
-                        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-                        <script>
-                            document.addEventListener('DOMContentLoaded', function () {
-                                var startDateInput = document.getElementById('start-date');
-                                var endDateInput = document.getElementById('end-date');
-                                var dateRangeInput = document.getElementById('date-range');
-                                var dayDifferenceInput = document.getElementById('day-difference');
-
-                                var startDatePicker = flatpickr(startDateInput, {
-                                    dateFormat: 'd/m/Y',
-                                    onChange: function (selectedDates, dateStr, instance) {
-                                        endDatePicker.set('minDate', dateStr);
-                                        updateDateRange();
-                                    }
-                                });
-
-                                var endDatePicker = flatpickr(endDateInput, {
-                                    dateFormat: 'd/m/Y',
-                                    onChange: function (selectedDates, dateStr, instance) {
-                                        startDatePicker.set('maxDate', dateStr);
-                                        updateDateRange();
-                                    }
-                                });
-
-                                function updateDateRange() {
-                                    var startDate = startDatePicker.selectedDates[0];
-                                    var endDate = endDatePicker.selectedDates[0];
-                                    if (startDate && endDate) {
-                                        var difference = Math.abs((endDate - startDate) / (1000 * 60 * 60 * 24));
-                                        dateRangeInput.value = startDate.toLocaleDateString('tr-TR') + ' - ' + endDate.toLocaleDateString('tr-TR');
-                                        dayDifferenceInput.value = difference + ' gün';
-                                    } else {
-                                        dateRangeInput.value = '';
-                                        dayDifferenceInput.value = '';
-                                    }
-                                }
-                            });
-                        </script>
-                        <div class="mt-3">
-                            <button type="submit" class="btn btn-info">Ekle</button>
+                        <div class="mb-3">
+                           
+                            @Html.HiddenFor(k => k.Id)
                         </div>
                     </div>
-                    <div class="col-md-6"></div>
                 </div>
-            </form>
+
+                <div class="date-picker-container">
+                    <div class="date-picker-content">
+                        <label for="Baslangic" class="form-label">Başlangıç Tarihi</label>
+                        @Html.TextBoxFor(k => k.Baslangic, new { @class = "form-control", @id = "start-date" })
+                        @Html.ValidationMessageFor(k => k.Baslangic, "", new { @style = "color:red" })
+                    </div>
+                    <div class="date-picker-content">
+                        <label for="Bitis" class="form-label">Bitiş Tarihi</label>
+                        @Html.TextBoxFor(k => k.Bitis, new { @class = "form-control", @id = "end-date" })
+                        @Html.ValidationMessageFor(k => k.Bitis, "", new { @style = "color:red" })
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <label for="GunFarki" class="form-label">Gün Farkı</label>
+                    @Html.TextBoxFor(k => k.Iptal, new { @class = "form-control", @readonly = "readonly", @id = "day-difference" })
+                    @Html.ValidationMessageFor(k => k.Iptal, "", new { @style = "color:red" })
+                </div>
+
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-info">Ekle</button>
+                </div>
+            }
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var startDateInput = document.getElementById('start-date');
+        var endDateInput = document.getElementById('end-date');
+        var dayDifferenceInput = document.getElementById('day-difference');
+
+        var startDatePicker = flatpickr(startDateInput, {
+            dateFormat: 'd/m/Y',
+            onChange: function (selectedDates, dateStr, instance) {
+                endDatePicker.set('minDate', dateStr);
+                updateDateRange();
+            }
+        });
+
+        var endDatePicker = flatpickr(endDateInput, {
+            dateFormat: 'd/m/Y',
+            onChange: function (selectedDates, dateStr, instance) {
+                startDatePicker.set('maxDate', dateStr);
+                updateDateRange();
+            }
+        });
+
+        function updateDateRange() {
+            var startDate = startDatePicker.selectedDates[0];
+            var endDate = endDatePicker.selectedDates[0];
+            if (startDate && endDate) {
+                var difference = Math.abs((endDate - startDate) / (1000 * 60 * 60 * 24));
+                dayDifferenceInput.value = difference;
+            } else {
+                dayDifferenceInput.value = '';
+            }
+        }
+    });
+</script>

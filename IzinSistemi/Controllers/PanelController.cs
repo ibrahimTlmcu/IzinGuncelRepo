@@ -22,6 +22,8 @@ namespace IzinSistemi.Controllers
         {
             var uyemail = (string)Session["Mail"];
             var degerler = db.Personel.FirstOrDefault(z => z.Mail == uyemail);
+
+            Session["PId"] = degerler.PId;
             return View(degerler);
         }
 

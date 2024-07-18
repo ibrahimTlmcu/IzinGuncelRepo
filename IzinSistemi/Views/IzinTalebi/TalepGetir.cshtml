@@ -1,0 +1,93 @@
+﻿@model List<IzinSistemi.Models.Entity.IzinTalebi>
+
+@{
+    ViewBag.Title = "TalepGetir";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-light">
+            <h2 class="mb-0 text-primary">İzin Talepleri </h2>
+        </div>
+        <br />
+        <div class="card-body">
+            <table class="table table-bordered table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Id</th>
+                        <th>İzin Türü</th>
+                        <th>Izin Talep Personel</th>
+                        <th>Izin Onay Personel</th>
+                        <th>Başlangıç</th>
+                        <th>Bitiş</th>
+                        <th>Detay</th>
+                        <th>İşlem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.IzinTip</td>
+                            <td>@item.IzinTalepPersoneId</td>
+                            <td>@item.IzinOnayPersoneld</td>
+                            <td>@item.Baslangic</td>
+                            <td>@item.Bitis</td>
+                            <td>@item.Detay</td>
+                            <td>
+                               
+                                <div class="d-flex justify-content-around">
+                                    <a>
+                                        @Html.ActionLink("Sil", "TalepSil", new { id = item.Id }, new
+                               {
+                                   @class = "btn btn-danger",
+                                            onclick = "return confirm('Silmek istiyor musunuz ? ')"
+                               })
+                                    </a>
+                                    <a class="btn btn-success btn-sm" href="/IzinTalebi/TalepOnay1/@item.Id">Onayla</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+<style>
+    body {
+        background: linear-gradient(to top, #e0b3ff, white);
+    }
+
+    .card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .table thead th {
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .table tbody td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .btn {
+        transition: background-color 0.3s ease;
+    }
+
+        .btn:hover {
+            background-color: #5a5a5a;
+            color: white;
+        }
+</style>

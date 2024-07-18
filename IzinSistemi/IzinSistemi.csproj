@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IzinTalebiController.cs" />
+    <Compile Include="Controllers\IzinTalepOnayRed.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PanelController.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
@@ -531,11 +532,12 @@
     <Content Include="Views\Panel\Index.cshtml" />
     <Content Include="Views\Personel\tut.cshtml" />
     <Content Include="Views\Login\GirisYap.cshtml" />
-    <Content Include="Views\IzinTalebi\Index.cshtml" />
     <Content Include="Views\IzinTalebi\Talep.cshtml" />
+    <Content Include="Views\IzinTalebi\TalepGetir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\IzinTalepOnayRed\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

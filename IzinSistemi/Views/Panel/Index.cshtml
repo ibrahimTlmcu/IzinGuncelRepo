@@ -267,11 +267,11 @@
                                     <i class="icon-pencil primary font-large-2 mr-2"></i>
                                 </div>
                                 <div class="media-body">
-                                    <h4>Kalan Izin  @TempData["KalanIzin"].ToString()</h4>
+                                    <h4>Kalan Izin</h4>
                                     <span></span>
                                 </div>
                                 <div class="align-self-center">
-                                 
+                                    <h1>@Session["KalanIzin"]</h1>
                                 </div>
                             </div>
                         </div>
@@ -292,7 +292,7 @@
                                     <span></span>
                                 </div>
                                 <div class="align-self-center">
-                                    <h1>1</h1>
+                                    <h1>@Session["KullanılanIzin"]</h1>
                                 </div>
                             </div>
                         </div>
@@ -448,7 +448,7 @@
 
                     <div class="row justify-content-end">
                         <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">Şifre Güncelle</button>
+                            <button type="submit" class="btn btn-primary">Bilgileri Güncelle</button>
                         </div>
                     </div>
 
