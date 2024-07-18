@@ -8,9 +8,12 @@ using System.Web.Security;
 
 namespace IzinSistemi.Controllers
 {
+
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         // GET: Login
+
 
 
         DBIzinTakipEntities db = new DBIzinTakipEntities();
@@ -47,7 +50,17 @@ namespace IzinSistemi.Controllers
             {
                 return View(); 
             }
+
+
+
         }
-     
+
+
+        public ActionResult CikisYap()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("GirisYap", "Login");
+
+        }
     }
 }

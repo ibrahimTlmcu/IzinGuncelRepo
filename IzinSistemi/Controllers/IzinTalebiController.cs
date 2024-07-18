@@ -8,6 +8,7 @@ using System.Web.UI;
 
 namespace IzinSistemi.Controllers
 {
+    [Authorize]
     public class IzinTalebiController : Controller
     {
         // GET: IzinTalebi

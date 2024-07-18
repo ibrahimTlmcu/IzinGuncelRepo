@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace IzinSistemi.Controllers
 {
+    [Authorize]
     public class PanelController : Controller
     {
         // GET: Panel
@@ -15,9 +16,7 @@ namespace IzinSistemi.Controllers
         DBIzinTakipEntities db = new DBIzinTakipEntities();
 
 
-        [Authorize]
-
-     
+       
         public ActionResult Index()
         {
             var uyemail = (string)Session["Mail"];
