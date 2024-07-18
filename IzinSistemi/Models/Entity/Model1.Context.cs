@@ -31,5 +31,6 @@ namespace IzinSistemi.Models.Entity
         public virtual DbSet<OnaylananIzin> OnaylananIzin { get; set; }
         public virtual DbSet<Personel> Personel { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Admin> Admin { get; set; }
     }
 }

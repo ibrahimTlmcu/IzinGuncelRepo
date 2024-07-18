@@ -14,6 +14,7 @@
         <AssociationConnector Association="DBIzinTakipModel.FK_IzinTalebi_Personel" ManuallyRouted="false" />
         <AssociationConnector Association="DBIzinTakipModel.FK_OnaylananIzin_IzinTalebi" ManuallyRouted="false" />
         <AssociationConnector Association="DBIzinTakipModel.FK_IzinTalebi_İzinTipi" />
+        <EntityTypeShape EntityType="DBIzinTakipModel.Admin" Width="1.5" PointX="5.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
