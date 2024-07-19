@@ -12,6 +12,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="KullanıcıAdı" Type="nvarchar" MaxLength="50" />
           <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Yetki" Type="nchar" MaxLength="1" />
         </EntityType>
         <EntityType Name="IzinTalebi">
           <Key>
@@ -26,6 +27,7 @@
           <Property Name="Detay" Type="nvarchar" MaxLength="150" />
           <Property Name="Onay" Type="bit" />
           <Property Name="Iptal" Type="bit" />
+          <Property Name="Gun" Type="int" />
         </EntityType>
         <EntityType Name="İzinTipi">
           <Key>
@@ -70,6 +72,7 @@
           <Property Name="KalanIzin" Type="int" />
           <Property Name="Fotograf" Type="nvarchar" MaxLength="1550" />
           <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Yetki" Type="nchar" MaxLength="1" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -158,6 +161,7 @@
           <NavigationProperty Name="Personel" Relationship="Self.FK_IzinTalebi_Personel" FromRole="IzinTalebi" ToRole="Personel" />
           <NavigationProperty Name="OnaylananIzin" Relationship="Self.FK_OnaylananIzin_IzinTalebi" FromRole="IzinTalebi" ToRole="OnaylananIzin" />
           <NavigationProperty Name="İzinTipi" Relationship="DBIzinTakipModel.FK_IzinTalebi_İzinTipi" FromRole="IzinTalebi" ToRole="İzinTipi" />
+          <Property Name="Gun" Type="Int32" />
         </EntityType>
         <EntityType Name="İzinTipi">
           <Key>
@@ -205,6 +209,7 @@
           <Property Name="Fotograf" Type="String" MaxLength="1550" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="IzinTalebi" Relationship="Self.FK_IzinTalebi_Personel" FromRole="Personel" ToRole="IzinTalebi" />
           <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Yetki" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -280,6 +285,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="KullanıcıAdı" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Yetki" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -290,6 +296,7 @@
           <EntitySetMapping Name="IzinTalebi">
             <EntityTypeMapping TypeName="DBIzinTakipModel.IzinTalebi">
               <MappingFragment StoreEntitySet="IzinTalebi">
+                <ScalarProperty Name="Gun" ColumnName="Gun" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IzinTip" ColumnName="IzinTip" />
                 <ScalarProperty Name="IzinTalepPersoneId" ColumnName="IzinTalepPersoneId" />
@@ -336,6 +343,7 @@
           <EntitySetMapping Name="Personel">
             <EntityTypeMapping TypeName="DBIzinTakipModel.Personel">
               <MappingFragment StoreEntitySet="Personel">
+                <ScalarProperty Name="Yetki" ColumnName="Yetki" />
                 <ScalarProperty Name="Sifre" ColumnName="Sifre" />
                 <ScalarProperty Name="PId" ColumnName="PId" />
                 <ScalarProperty Name="Isim" ColumnName="Isim" />
@@ -364,6 +372,7 @@
           <EntitySetMapping Name="Admin">
             <EntityTypeMapping TypeName="DBIzinTakipModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="Yetki" ColumnName="Yetki" />
                 <ScalarProperty Name="Sifre" ColumnName="Sifre" />
                 <ScalarProperty Name="KullanıcıAdı" ColumnName="KullanıcıAdı" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

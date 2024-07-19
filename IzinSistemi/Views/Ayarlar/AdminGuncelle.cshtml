@@ -1,0 +1,36 @@
+﻿@model IzinSistemi.Models.Entity.Admin
+@{
+    ViewBag.Title = "AdminGuncelle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+
+<div class="card mt-5 shadow" style="max-width: 400px; margin: auto;">
+    <div class="card-header">
+        <h3 style="text-align:center">Admin Güncelleme</h3>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("AdminGuncelle", "Ayarlar", FormMethod.Post))
+        {
+            <div class="form-group">
+               
+                @Html.LabelFor(k => k.KullanıcıAdı, new { @class = "form-label" })
+                @Html.TextBoxFor(k => k.KullanıcıAdı, new { @class = "form-control" })
+
+                @Html.LabelFor(k => k.Yetki, new { @class = "form-label", style = "margin-top: 10px;" })
+                @Html.TextBoxFor(k => k.Yetki, new { @class = "form-control" })
+
+                @Html.LabelFor(k => k.Sifre, new { @class = "form-label", style = "margin-top: 10px;" })
+                @Html.TextBoxFor(k => k.Sifre, new { @class = "form-control" })
+            </div>
+            <button class="btn btn-outline-warning mt-3">Güncelle</button>
+        }
+    </div>
+</div>
+<style>
+    body {
+        background: linear-gradient(to top, #e0b3ff, white);
+    }
+</style>
+

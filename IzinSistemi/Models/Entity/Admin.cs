@@ -17,5 +17,6 @@ namespace IzinSistemi.Models.Entity
         public int Id { get; set; }
         public string KullanıcıAdı { get; set; }
         public string Sifre { get; set; }
+        public string Yetki { get; set; }
     }
 }

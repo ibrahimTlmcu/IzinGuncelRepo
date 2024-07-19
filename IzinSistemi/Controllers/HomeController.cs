@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace IzinSistemi.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="B")]
     public class HomeController : Controller
     {
         DBIzinTakipEntities db = new DBIzinTakipEntities();

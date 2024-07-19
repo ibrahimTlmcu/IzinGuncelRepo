@@ -23,6 +23,7 @@ namespace IzinSistemi.Models.Entity
         public string Detay { get; set; }
         public Nullable<bool> Onay { get; set; }
         public Nullable<bool> Iptal { get; set; }
+        public Nullable<int> Gun { get; set; }
     
         public virtual Personel Personel { get; set; }
         public virtual OnaylananIzin OnaylananIzin { get; set; }

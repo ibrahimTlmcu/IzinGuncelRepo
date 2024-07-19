@@ -8,6 +8,7 @@ using System.Web.Security;
 
 namespace IzinSistemi.Controllers
 {
+    [AllowAnonymous]
     public class AdminLoginController : Controller
     {
         // GET: AdminLogin
@@ -16,7 +17,9 @@ namespace IzinSistemi.Controllers
         {
             return View();
         }
+        [AllowAnonymous]
         [HttpPost]
+      
         public ActionResult Login(Admin a)
         {
             var bilgiler = db.Admin.FirstOrDefault(x => x.KullanıcıAdı == a.KullanıcıAdı && x.Sifre == a.Sifre);
@@ -24,7 +27,7 @@ namespace IzinSistemi.Controllers
             {
                 FormsAuthentication.SetAuthCookie(bilgiler.KullanıcıAdı, false);
                 Session["KullanıcıAdı"] = bilgiler.KullanıcıAdı.ToString();
-                return RedirectToAction("Index", "Home");   
+                return RedirectToAction("TalepGetir", "IzinTalebi");
             }
             return View();
         }

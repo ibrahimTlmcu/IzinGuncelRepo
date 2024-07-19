@@ -8,7 +8,7 @@ using System.Web.UI;
 
 namespace IzinSistemi.Controllers
 {
-    [Authorize]
+    
     public class IzinTalebiController : Controller
     {
         // GET: IzinTalebi
@@ -21,6 +21,7 @@ namespace IzinSistemi.Controllers
         }
 
         [HttpGet]
+     
         public ActionResult Talep()
         {
             List<SelectListItem> deger1 = (from x in db.İzinTipi.ToList() select new SelectListItem { Text = x.Id + " " + x.Tip, Value = x.Id.ToString() }).ToList();
@@ -54,6 +55,7 @@ namespace IzinSistemi.Controllers
 
             return RedirectToAction("Index","Panel");
         }
+     
         public ActionResult TalepGetir()
         {
 
@@ -61,14 +63,22 @@ namespace IzinSistemi.Controllers
             return View(degerler);
         }
 
+       
         public ActionResult TalepOnay1(IzinTalebi P )
         {
+            var gun = P.Gun;
             var id = P.Id;
             var deger = db.IzinTalebi.FirstOrDefault(i => i.Id ==P.Id);
+          
+            var personel = deger.IzinTalepPersoneId;
+            var deger2 = db.Personel.Find(personel);
+
+            var izinmiktarı = P.Gun;
             
             if(deger != null)
             {
                 deger.Onay = true;
+                deger2.KalanIzin = deger2.KalanIzin - P.Gun;
                 db.SaveChanges();
             }
 
@@ -88,6 +98,7 @@ namespace IzinSistemi.Controllers
             return RedirectToAction("Index","Panel");
         }
 
+     
 
     }
 

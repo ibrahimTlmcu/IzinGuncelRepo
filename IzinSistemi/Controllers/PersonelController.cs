@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace IzinSistemi.Controllers
 {
+    [Authorize(Roles ="B")]
     public class PersonelController : Controller
     {
         // GET: Personel

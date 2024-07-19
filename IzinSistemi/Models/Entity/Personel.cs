@@ -31,6 +31,7 @@ namespace IzinSistemi.Models.Entity
         public Nullable<int> KalanIzin { get; set; }
         public string Fotograf { get; set; }
         public string Sifre { get; set; }
+        public string Yetki { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<IzinTalebi> IzinTalebi { get; set; }
