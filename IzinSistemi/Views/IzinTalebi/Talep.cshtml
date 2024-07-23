@@ -5,18 +5,19 @@
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
 
-<div class="container">
-    <div class="card shadow p-3 mb-5 bg-body rounded">
-        <div class="card-body">
-            <h2 class="card-title">Personel ve İzin Bilgileri Girişi</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow p-3 mb-5 bg-body rounded">
+                <div class="card-body">
+                    <h2 class="card-title text-center">Personel ve İzin Bilgileri Girişi</h2>
 
-            @using (Html.BeginForm("Talep", "IzinTalebi", FormMethod.Post))
-            {
-                <div class="row">
-                    <div class="col-md-6">
+                    @using (Html.BeginForm("Talep", "IzinTalebi", FormMethod.Post))
+                    {
                         <div class="mb-3">
-                            <label for="IzinTipId" class="form-label">Izin Adı</label>
+                            <label for="IzinTipId" class="form-label">İzin Adı</label>
                             @Html.DropDownListFor(k => k.IzinTip, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
                         </div>
                         <div class="mb-3">
@@ -25,37 +26,43 @@
                             @Html.ValidationMessageFor(k => k.Detay, "", new { @style = "color:red" })
                         </div>
                         <div class="mb-3">
-                           
                             @Html.HiddenFor(k => k.Id)
                         </div>
-                    </div>
-                </div>
 
-                <div class="date-picker-container">
-                    <div class="date-picker-content">
-                        <label for="Baslangic" class="form-label">Başlangıç Tarihi</label>
-                        @Html.TextBoxFor(k => k.Baslangic, new { @class = "form-control", @id = "start-date" })
-                        @Html.ValidationMessageFor(k => k.Baslangic, "", new { @style = "color:red" })
-                    </div>
-                    <div class="date-picker-content">
-                        <label for="Bitis" class="form-label">Bitiş Tarihi</label>
-                        @Html.TextBoxFor(k => k.Bitis, new { @class = "form-control", @id = "end-date" })
-                        @Html.ValidationMessageFor(k => k.Bitis, "", new { @style = "color:red" })
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <label for="GunFarki" class="form-label">Gün Farkı</label>
-                    @Html.TextBoxFor(k => k.Iptal, new { @class = "form-control", @readonly = "readonly", @id = "day-difference" })
-                    @Html.ValidationMessageFor(k => k.Iptal, "", new { @style = "color:red" })
-                </div>
+                        <div class="mb-3">
+                            <label for="Baslangic" class="form-label">Başlangıç Tarihi</label>
+                            @Html.TextBoxFor(k => k.Baslangic, new { @class = "form-control", @id = "start-date" })
+                            @Html.ValidationMessageFor(k => k.Baslangic, "", new { @style = "color:red" })
+                        </div>
+                        <div class="mb-3">
+                            <label for="Bitis" class="form-label">Bitiş Tarihi</label>
+                            @Html.TextBoxFor(k => k.Bitis, new { @class = "form-control", @id = "end-date" })
+                            @Html.ValidationMessageFor(k => k.Bitis, "", new { @style = "color:red" })
+                        </div>
+                        <div class="mb-3">
+                            <label for="Gun" class="form-label">Gün Farkı</label>
+                            @Html.TextBoxFor(k => k.Gun, new { @class = "form-control", @readonly = "readonly", @id = "day-difference" })
+                            @Html.ValidationMessageFor(k => k.Gun, "", new { @style = "color:red" })
+                        </div>
 
-                <div class="mt-3">
-                    <button type="submit" class="btn btn-info">Ekle</button>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-info">Ekle</button>
+                        </div>
+                    }
                 </div>
-            }
+            </div>
         </div>
     </div>
 </div>
+
+<style>
+    body {
+        background: url("https://media.istockphoto.com/id/1363424873/tr/fotoğraf/aerial-view-on-green-pine-forest.jpg?s=1024x1024&w=is&k=20&c=nQZlcfVSYFr_gDDyCwgr6qC6dLwE_nHM6ZkU7wvH8hs=") no-repeat center center fixed;
+        background-size: cover;
+        color: #333;
+        font-family: Arial, sans-serif;
+    }
+</style>
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>

@@ -5,8 +5,6 @@
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-
-
 <div class="container mt-5">
     <div class="card shadow-sm">
         <div class="card-header bg-light">
@@ -39,31 +37,41 @@
                             <td>@item.Bitis</td>
                             <td>@item.Detay</td>
                             <td>
-                               
                                 <div class="d-flex justify-content-around">
-                                    <a>
-                                        @Html.ActionLink("Sil", "TalepSil", new { id = item.Id }, new
-                               {
-                                   @class = "btn btn-danger",
-                                            onclick = "return confirm('Silmek istiyor musunuz ? ')"
-                               })
-                                    </a>
-                                    <a class="btn btn-success btn-sm" href="/IzinTalebi/TalepOnay1/@item.Id">Onayla</a>
+                                    @if (item.Onay.HasValue && item.Onay.Value)
+                                    {
+
+                                        <button class="btn btn-primary" >Onaylandı</button>
+                                        @TempData["Message"]
+
+                                    }
+                                    else
+                                    {
+                                        <a>
+                                            @Html.ActionLink("Sil", "TalepSil", new { id = item.Id }, new
+                                            {
+                                                @class = "btn btn-danger btn-sm",
+                                                onclick = "return confirm('Silmek istiyor musunuz?')"
+                                            })
+                                        </a>
+                                        <a class="btn btn-success btn-sm" href="/IzinTalebi/TalepOnay1/@item.Id">Onayla</a>
+                                    }
                                 </div>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
-
         </div>
     </div>
 </div>
 
-
 <style>
     body {
-        background: linear-gradient(to top, #e0b3ff, white);
+        background: url("https://media.istockphoto.com/id/1363424873/tr/fotoğraf/aerial-view-on-green-pine-forest.jpg?s=1024x1024&w=is&k=20&c=nQZlcfVSYFr_gDDyCwgr6qC6dLwE_nHM6ZkU7wvH8hs=") no-repeat center center fixed;
+        background-size: cover;
+        color: #333;
+        font-family: Arial, sans-serif;
     }
 
     .card-header {
@@ -90,4 +98,16 @@
             background-color: #5a5a5a;
             color: white;
         }
+
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        border-radius: 0.2rem;
+    }
+
+    .d-flex {
+        display: flex;
+        gap: 10px;
+    }
 </style>

@@ -1,0 +1,73 @@
+﻿@model IzinSistemi.Models.Entity.IzinTalebi
+
+@{
+    ViewBag.Title = "Mail";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+<style>
+    body {
+        background: linear-gradient(to top, #e0b3ff, white);
+    }
+
+    .form-control {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+    }
+
+    .btn {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+    }
+
+    .card {
+        max-width: 500px;
+        margin: 20px auto;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+</style>
+
+<div class="container">
+    <div class="card shadow p-3 mb-5 bg-body rounded">
+        <div class="card-body">
+            <h2 class="card-title">İzin Türü Girişi</h2>
+
+            <form class="form-group" method="post">
+
+                <div class="mb-3">
+                    <label for="izinTipiAdi" class="form-label">İzin Türü Adı</label>
+
+                    @Html.TextBoxFor(k => k.Tip, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(k => k.Tip, "", new { @style = "color:red" })
+                </div>
+                <div class="mb-3">
+                    <label for="izinTipiGunu" class="form-label">Gün</label>
+
+                    @Html.TextBoxFor(k => k.Gun, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(k => k.Gun, "", new { @style = "color:red" })
+                </div>
+                <div class="mb-3">
+                    <label for="izinTipiSaati" class="form-label">Saat</label>
+
+                    @Html.TextBoxFor(k => k.Saat, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(k => k.Saat, "", new { @style = "color:red" })
+                </div>
+
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-info">Ekle</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
