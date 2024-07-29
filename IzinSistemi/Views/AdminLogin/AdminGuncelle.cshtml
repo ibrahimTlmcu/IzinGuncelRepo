@@ -1,0 +1,56 @@
+﻿@model IzinSistemi.Models.Entity.Admin
+@{
+    ViewBag.Title = "AdminGuncelle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+
+
+
+<div class="row">
+
+    <div class="col-xxl">
+        <div class="card mb-4">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <h5 class="mb-0"></h5>
+                <small class="text-muted float-end"></small>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("AdminGuncelle", "AdminLogin", FormMethod.Post))
+                {
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Kullanıcı Adı</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-fullname2" class="input-group-text">
+                                    <i class="mdi mdi-account-outline"></i>
+                                </span>
+                                @Html.TextBoxFor(k => k.KullanıcıAdı, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Şifre</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-company2" class="input-group-text">
+                                    <i class="mdi mdi-office-building-outline"></i>
+                                </span>
+                                @Html.TextBoxFor(k => k.Sifre, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary">Bilgileri Güncelle</button>
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

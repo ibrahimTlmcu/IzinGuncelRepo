@@ -18,11 +18,10 @@ namespace IzinSistemi.Controllers
         }
 
         [HttpGet]
-
         public ActionResult TipEkle()
         {
-            var item = db.İzinTipi.ToList();
-            return View(item);
+         
+            return View();
         }
 
 
@@ -35,7 +34,7 @@ namespace IzinSistemi.Controllers
             }
             db.İzinTipi.Add(p);
             db.SaveChanges();
-            return View();
+            return RedirectToAction("TalepGetir", "IzinTalebi");
         }
         public ActionResult Sil(int id)
         {

@@ -35,7 +35,7 @@ namespace IzinSistemi.Controllers
             }
             db.Personel.Add(p);
             db.SaveChanges();
-            return View();
+            return RedirectToAction("Index", "Panel");
 
         }
 

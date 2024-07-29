@@ -24,11 +24,9 @@
         max-width: 500px;
         margin: 20px auto;
     }
-
     .card-body {
         padding: 1rem;
     }
-
     .card-title {
         font-size: 1.25rem;
         text-align: center;
@@ -44,7 +42,7 @@
             <form class="form-group" method="post">
 
                 <div class="mb-3">
-                    <label for="izinTipiAdi" class="form-label">İzin Türü Adı</label>
+                    <label for="Tip" class="form-label">İzin Türü Adı</label>
 
                     @Html.TextBoxFor(k => k.Tip, new { @class = "form-control" })
                     @Html.ValidationMessageFor(k => k.Tip, "", new { @style = "color:red" })

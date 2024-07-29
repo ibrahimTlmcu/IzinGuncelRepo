@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
@@ -42,25 +43,37 @@ namespace IzinSistemi.Controllers
             var kullanici = (string)Session["Mail"];
             var uye = db.Personel.FirstOrDefault(x => x.Mail == kullanici);
 
-            if (uye != null)
-            {
-                // Gelen izin tipini başka bir tabloya aktaralım
-                var yeniIzin = new IzinTalebi
+
+           
+          
+                if (uye != null)
                 {
-                    IzinTip = model.IzinTip,
-                    Detay = model.Detay,
-                    IzinTalepPersoneId = uye.PId,  // İlgili personelin ID'si
-                    Baslangic = model.Baslangic,
-                    Bitis = model.Bitis,
-                    Gun = model.Gun,
-                   
-                };
+                    // Gelen izin tipini başka bir tabloya aktaralım
+                    var yeniIzin = new IzinTalebi
+                    {
+                        IzinTip = model.IzinTip,
+                        Detay = model.Detay,
+                        IzinTalepPersoneId = uye.PId,  // İlgili personelin ID'si
+                        Baslangic = model.Baslangic,
+                        Bitis = model.Bitis,
+                        Gun = model.Gun,
+
+                    };
+
+                    
 
 
+                    db.IzinTalebi.Add(yeniIzin);
+                    db.SaveChanges();
+                }
+            
+            
+               
+            
+         
+            
 
-                db.IzinTalebi.Add(yeniIzin);
-                db.SaveChanges();
-            }
+
 
             return RedirectToAction("Index","Panel");
         }
@@ -96,7 +109,7 @@ namespace IzinSistemi.Controllers
             
             var deger2 = db.Personel.Find(personel);
 
-        
+            
             
             var izinmiktarı = P.Gun;
             
@@ -108,7 +121,6 @@ namespace IzinSistemi.Controllers
                 newMail.Index(P, tut);
                 db.SaveChanges();
             }
-         
             var deger1 = db.IzinTalebi.ToList();
             return RedirectToAction("TalepGetir","IzinTalebi");
         }
@@ -116,43 +128,17 @@ namespace IzinSistemi.Controllers
         {
             var id = P.Id;
             var deger = db.IzinTalebi.FirstOrDefault(i => i.Id == id);
-
             db.IzinTalebi.Remove(deger);
             db.SaveChanges();
             return RedirectToAction("Index","Panel");
         }
 
-
-        //[HttpPost]
-        //public ActionResult Mail(IzinTalebi model)
-        //{
-        //    MailMessage mailim = new MailMessage();
-        //    mailim.To.Add("ibrahimtulumcu@hotmail.com");
-        //    mailim.From = new MailAddress("ibrahimtulumcu@hotmail.com");
-        //    mailim.Subject = "Bize Ulaşın Sayfasından Mesajınız Var. " + model.Baslangic;
-        //    mailim.Body = "Sayın yetkili, " + model.Bitis;
-        //    mailim.IsBodyHtml = true;
-
-
-        //    SmtpClient smtp = new SmtpClient();
-        //    smtp.Credentials = new NetworkCredential("ibrahimtulumcu@hotmail.com", "chtd iids rorl wzpw");
-        //    smtp.Port = 587;
-        //    smtp.Host = "smtp.hotmail.com";
-        //    smtp.EnableSsl = true;
-
-        //    try
-        //    {
-        //        smtp.Send(mailim);
-        //        TempData["Message"] = "Mesajınız iletilmiştir. En kısa zamanda size geri dönüş sağlanacaktır.";
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        TempData["Message"] = "Mesaj gönderilemedi.Hata nedeni:" + ex.Message;
-        //    }
-
-        //    return View();
-
-        //}
+        [HttpGet]
+       public ActionResult BekleyenIzin(Personel P,IzinTalebi K)
+        {
+            var talepler = db.IzinTalebi.ToList();
+            return View(talepler);
+        }
 
 
 

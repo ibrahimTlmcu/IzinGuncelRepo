@@ -20,7 +20,6 @@ namespace IzinSistemi.Controllers
         }
 
         [HttpGet]
-
         public ActionResult PersonelEkle()
         {
             return View();

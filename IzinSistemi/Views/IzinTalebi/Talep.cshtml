@@ -45,6 +45,16 @@
                             @Html.ValidationMessageFor(k => k.Gun, "", new { @style = "color:red" })
                         </div>
 
+
+
+                     
+                        
+                            <div class="alert alert-danger">
+                                @TempData["ErrorMessage"]
+                            </div>
+                        
+                        
+
                         <div class="text-center">
                             <button type="submit" class="btn btn-info">Ekle</button>
                         </div>
