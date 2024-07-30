@@ -42,10 +42,6 @@ namespace IzinSistemi.Controllers
         {
             var kullanici = (string)Session["Mail"];
             var uye = db.Personel.FirstOrDefault(x => x.Mail == kullanici);
-
-
-           
-          
                 if (uye != null)
                 {
                     // Gelen izin tipini başka bir tabloya aktaralım
@@ -60,21 +56,9 @@ namespace IzinSistemi.Controllers
 
                     };
 
-                    
-
-
                     db.IzinTalebi.Add(yeniIzin);
                     db.SaveChanges();
                 }
-            
-            
-               
-            
-         
-            
-
-
-
             return RedirectToAction("Index","Panel");
         }
 

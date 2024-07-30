@@ -44,15 +44,13 @@ namespace IzinSistemi.Controllers
                 Session["KullanılanIzin"] = bilgiler.KullanılanIzin.ToString();
                 TempData["ToplamIzin"] = bilgiler.ToplamIzin.ToString();
                 TempData["PId"] = bilgiler.PId.ToString();
+                TempData["Mail"] = bilgiler.Mail.ToString();
                 return RedirectToAction("Index","Panel");
             }
             else
             {
                 return View(); 
             }
-
-
-
         }
 
 

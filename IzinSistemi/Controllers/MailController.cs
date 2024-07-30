@@ -33,7 +33,7 @@ namespace IzinSistemi.Controllers
  
 
             SmtpClient smtp = new SmtpClient();
-            smtp.Credentials = new NetworkCredential("ibrahimtulumcu@hotmail.com", "muslera.58");
+            smtp.Credentials = new NetworkCredential("ibrahimtulumcu@hotmail.com", "");
             smtp.Port = 587;
             smtp.Host = "smtp-mail.outlook.com";
             smtp.EnableSsl = true;

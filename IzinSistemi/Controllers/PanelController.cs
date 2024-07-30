@@ -42,9 +42,6 @@ namespace IzinSistemi.Controllers
         public ActionResult Index2(Personel p)
         {
 
-
-
-
             var kullanici = (string)Session["Mail"];
             var uye = db.Personel.FirstOrDefault(x => x.Mail == kullanici);
             uye.Sifre = p.Sifre;
@@ -56,9 +53,6 @@ namespace IzinSistemi.Controllers
             /// Kullnıcı geçmiş izinleri görme 
             /// 
 
-         
-
-            
             db.SaveChanges();
             return RedirectToAction("Index");
 
