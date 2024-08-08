@@ -47,13 +47,13 @@
 
 
 
-                     
-                        
-                            <div class="alert alert-danger">
-                                @TempData["ErrorMessage"]
-                            </div>
-                        
-                        
+
+
+                        <div class="alert alert-danger">
+                            @TempData["ErrorMessage"]
+                        </div>
+
+
 
                         <div class="text-center">
                             <button type="submit" class="btn btn-info">Ekle</button>
@@ -101,11 +101,25 @@
             var startDate = startDatePicker.selectedDates[0];
             var endDate = endDatePicker.selectedDates[0];
             if (startDate && endDate) {
-                var difference = Math.abs((endDate - startDate) / (1000 * 60 * 60 * 24));
+                var difference = calculateBusinessDays(startDate, endDate);
                 dayDifferenceInput.value = difference;
             } else {
                 dayDifferenceInput.value = '';
             }
         }
+
+        function calculateBusinessDays(startDate, endDate) {
+            var count = 0;
+            var currentDate = new Date(startDate);
+            while (currentDate <= endDate) {
+                var dayOfWeek = currentDate.getDay();
+                if (dayOfWeek !== 6 && dayOfWeek !== 0) { // Exclude weekends
+                    count++;
+                }
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+            return count;
+        }
     });
 </script>
+

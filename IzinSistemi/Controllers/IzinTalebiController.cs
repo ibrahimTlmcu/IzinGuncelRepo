@@ -65,7 +65,7 @@ namespace IzinSistemi.Controllers
         [Authorize(Roles ="B")]
         public ActionResult TalepGetir()
         {
-
+            
             var degerler = db.IzinTalebi.ToList();
             return View(degerler);
         }
@@ -73,14 +73,14 @@ namespace IzinSistemi.Controllers
        
         public ActionResult TalepOnay1(IzinTalebi P )
         {
-
             var personeltut = db.Personel;
 
             MailController newMail = new MailController();
             var gun = P.Gun;
             var id = P.Id;
             var deger = db.IzinTalebi.FirstOrDefault(i => i.Id == P.Id);
-            
+           
+           
 
             var personel1 = deger.Gun;
             var kullanici = (string)Session["Mail"];
@@ -92,6 +92,7 @@ namespace IzinSistemi.Controllers
             var personell = db.Personel.Find(personel);
             
             var deger2 = db.Personel.Find(personel);
+
 
             
             
@@ -123,6 +124,16 @@ namespace IzinSistemi.Controllers
             var talepler = db.IzinTalebi.ToList();
             return View(talepler);
         }
+
+
+
+        [HttpGet]
+        public ActionResult GecmisIzin()
+        {
+            var onaylanmisTalepler = db.IzinTalebi.Where(i => i.Onay == true).ToList();
+            return View(onaylanmisTalepler);
+        }
+
 
 
 

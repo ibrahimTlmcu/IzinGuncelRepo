@@ -2654,7 +2654,6 @@
     <Content Include="Views\Register\KayitOl.cshtml" />
     <Content Include="Views\Shared\LayoutPanel.cshtml" />
     <Content Include="Views\Panel\Index.cshtml" />
-    <Content Include="Views\Personel\tut.cshtml" />
     <Content Include="Views\Login\GirisYap.cshtml" />
     <Content Include="Views\IzinTalebi\Talep.cshtml" />
     <Content Include="Views\IzinTalebi\TalepGetir.cshtml" />
@@ -2667,6 +2666,7 @@
     <Content Include="Views\Mail\SendEmail.cshtml" />
     <Content Include="Views\AdminLogin\AdminGuncelle.cshtml" />
     <Content Include="Views\IzinTalebi\BekleyenIzin.cshtml" />
+    <Content Include="Views\IzinTalebi\GecmisIzin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminLTE-3.0.4 Dosyası\" />

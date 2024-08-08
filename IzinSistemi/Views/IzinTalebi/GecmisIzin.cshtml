@@ -1,13 +1,8 @@
-﻿@model IzinSistemi.Models.Entity.IzinTalebi
-
-
+﻿@model List<IzinSistemi.Models.Entity.IzinTalebi>
 @{
-    ViewBag.Title = "BekleyenIzin";
+    ViewBag.Title = "TalepGetir";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
-
-<h2>BekleyenIzin</h2>
-
 
 <div class="container mt-5">
     <div class="card shadow-sm">
@@ -26,7 +21,7 @@
                         <th>Başlangıç</th>
                         <th>Bitiş</th>
                         <th>Detay</th>
-                        <th>İşlem</th>
+               
                     </tr>
                 </thead>
                 <tbody>
@@ -41,16 +36,6 @@
                             <td>@item.Bitis</td>
                             <td>@item.Detay</td>
                             <td>
-                                <div class="d-flex justify-content-around">
-                                    @if (item.Onay.HasValue && item.Onay.Value)
-                                    {
-
-                                        <button class="btn btn-primary">Onaylandı</button>
-                                        @TempData["Message"]
-
-                                    }
-
-                                </div>
                             </td>
                         </tr>
                     }

@@ -27,6 +27,7 @@ namespace IzinSistemi.Controllers
         public ActionResult YeniAdmin(Admin admin)
         {
             db.Admin.Add(admin);
+            admin.Yetki = "B";
             db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
